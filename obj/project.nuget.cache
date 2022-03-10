@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "6UeDVO2vD7uaEK4avssnPhtK/XkqlsN2NkQF26w8a5lmPCBzuGvT9iAFrq1hhW60CAe5iob5NJ/3UaBxUqqO6g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tubot\\SmartApartmentData\\SmartApartmentData.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tubot\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\tubot\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\tubot\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\tubot\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\tubot\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\tubot\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
