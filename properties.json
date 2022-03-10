@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "ecommerce", "_type" : "product", "_id" : "1002" } }
+{ "id": 2}
+{"index":{ "_index" : "ecommerce", "_type" : "product","_id":"1003"}}
+{ "id": 3,"name":"Dot net"}
