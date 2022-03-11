@@ -22,8 +22,9 @@ C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\staticwebassets\SmartApartmen
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\staticwebassets\SmartApartmentData.StaticWebAssets.xml
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\scopedcss\bundle\SmartApartmentData.styles.css
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.RazorTargetAssemblyInfo.cache
-C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.csproj.CopyComplete
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.dll
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\ref\SmartApartmentData.dll
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.pdb
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.genruntimeconfig.cache
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\bulk_movies.json
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\properties.json

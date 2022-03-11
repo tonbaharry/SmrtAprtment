@@ -4,13 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SmartApartmentData.Extension;
+using SmartApartmentData.Services;
+using static SmartApartmentData.Services.DotNetService;
 
 namespace SmartApartmentData
 {
@@ -32,6 +37,10 @@ namespace SmartApartmentData
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartApartmentData", Version = "v1" });
             });
+            services.AddSingleton<IDotNetService, ElasticSearchDotNetService>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddElasticsearch(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
