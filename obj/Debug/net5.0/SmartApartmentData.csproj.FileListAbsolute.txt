@@ -11,7 +11,6 @@ C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.csproj.AssemblyReference.cache
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.AssemblyInfoInputs.cache
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.AssemblyInfo.cs
@@ -28,3 +27,7 @@ C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.pdb
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.genruntimeconfig.cache
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\bulk_movies.json
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\properties.json
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\properties2.json
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Elasticsearch.Net.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Nest.dll
+C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.csproj.AssemblyReference.cache

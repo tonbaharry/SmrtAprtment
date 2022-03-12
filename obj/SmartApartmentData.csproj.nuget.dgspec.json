@@ -48,7 +48,7 @@
           "dependencies": {
             "NEST": {
               "target": "Package",
-              "version": "[7.17.0, )"
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

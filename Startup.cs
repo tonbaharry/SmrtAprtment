@@ -15,7 +15,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SmartApartmentData.Extension;
 using SmartApartmentData.Services;
-using static SmartApartmentData.Services.DotNetService;
 
 namespace SmartApartmentData
 {
@@ -31,16 +30,19 @@ namespace SmartApartmentData
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartApartmentData", Version = "v1" });
             });
-            services.AddSingleton<IDotNetService, ElasticSearchDotNetService>();
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddElasticsearch(Configuration);
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddSingleton<IManagementService, ElasticSearchManagementService>();
+            services.Configure<ManagementSetting>(Configuration.GetSection("management"));
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddManagementElasticsearch(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

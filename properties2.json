@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "property" } }
+{ "propertyID": 85630, "name": "Curry Junction", "formerName": "", "streetAddress": "3549 Curry Lane", "city": "Abilene","market": "Abilene","state": "TX","lat": 3.240535500000000e+001, "lng": -9.977368000000000e+001}
+{ "index" : { "_index" : "property" } }
+{ "propertyID": 85631,"name": "Riatta Ranch","formerName": "","streetAddress": "1111 Musken","city": "Abilene","market": "Abilene","state": "TX","lat": 3.245346100000000e+001,"lng": -9.970416200000000e+001}
