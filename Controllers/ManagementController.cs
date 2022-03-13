@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Nest;
 using SmartApartmentData.Model;
 using SmartApartmentData.Services;
 using System;
@@ -24,11 +26,26 @@ namespace SmartApartmentData.Controllers
 
             if (existing == null)
             {
-                await _service.SaveSingleManagementAsync(entry);
-                return Ok();
+                ElasticPostResponse response =  await _service.SaveSingleManagementAsync(entry);
+                return Ok(response);
             }
 
             return NotFound();
+        }
+
+        [HttpPost("InsertMultipleManagementRecord")]
+        public async Task<IActionResult> InsertMultipleManagementRecord([FromBody] List<Management> entry)
+        {
+            ElasticPostResponse response = await _service.SaveManyManagementAsync(entry);
+            return Ok(response);
+        }
+
+        [HttpGet("SearchManagement")]
+        public async Task<IActionResult> SearchManagement(string query = "")
+        {
+            var response = await _service.SearchKeyManagement(query);
+
+            return Ok(response);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,47 +57,83 @@ namespace SmartApartmentData.Services
             }
         }
 
-        public async Task SaveSingleManagementAsync(Management mgt)
+        public async Task<List<Management>> SearchKeyManagement(string keyword)
         {
-            if (_cache.Any(p => p.mgmt.mgmtID == mgt.mgmt.mgmtID))
+            var result = await _elasticClient.SearchAsync<Management>(
+                 s => s.Query(q => q.QueryString(d => d.Query('*' + keyword + '*'))));
+
+            if (!result.IsValid)
             {
-                var resp = await _elasticClient.UpdateAsync<Management>(mgt, u => u.Doc(mgt));
+                //Request notnvalid due to an error
+                _logger.LogError("Unable to carry out Elastic Search");
+                return new List<Management>();
             }
-            else
-            {
-                _cache.Add(mgt);
-                var resp = await _elasticClient.IndexDocumentAsync<Management>(mgt);
-            }
+            return result.Documents.ToList();
         }
 
-        public async Task SaveManyManagementAsync(Management[] mgts)
+        public async Task<ElasticPostResponse> SaveSingleManagementAsync(Management mgt)
         {
-            _cache.AddRange(mgts);
-            var result = await _elasticClient.IndexManyAsync(mgts);
-            //check for errors for each entry
-            if (result.Errors)
+            ElasticPostResponse response;
+            try
             {
-                foreach (var entryWithError in result.ItemsWithErrors)
+                if (_cache.Any(p => p.mgmt.mgmtID == mgt.mgmt.mgmtID))
                 {
-                    _logger.LogError("Failed to index management document {0}: {1}",
-                        entryWithError.Id, entryWithError.Error);
+                    await _elasticClient.UpdateAsync<Management>(mgt, u => u.Doc(mgt));
+                    response = new ElasticPostResponse {
+                        responseDescription = "Record Exists. Update performed",
+                        responseCode = 0
+                    };
                 }
+                else
+                {
+                    _cache.Add(mgt);
+                    var resp = await _elasticClient.IndexDocumentAsync<Management>(mgt);
+                    response = new ElasticPostResponse {
+                        responseDescription = resp.Id,
+                        responseCode = 0
+                    };
+                }
+
             }
+            catch(Exception ex)
+            {
+                response = new ElasticPostResponse {
+                        responseDescription = ex.Message,
+                        responseCode = 500
+                    };
+            }
+            return response;
         }
 
-        public async Task SaveBulkAsync(Management[] mgts)
+        public async Task<ElasticPostResponse> SaveManyManagementAsync(List<Management> mgts)
         {
-            _cache.AddRange(mgts);
-            var result = await _elasticClient.BulkAsync(b => b.Index("management").IndexMany(mgts));
-            //check for errors for each entry
-            if (result.Errors)
+            ElasticPostResponse response;
+            try
             {
-                foreach (var entryWithError in result.ItemsWithErrors)
+                _cache.AddRange(mgts);
+                var result = await _elasticClient.IndexManyAsync(mgts);
+                //check for errors for each entry
+                if (result.Errors)
                 {
-                    _logger.LogError("Failed to index management document {0}: {1}",
-                        entryWithError.Id, entryWithError.Error);
+                    foreach (var entryWithError in result.ItemsWithErrors)
+                    {
+                        _logger.LogError("Failed to index management document {0}: {1}", entryWithError.Id, entryWithError.Error);
+                    }
                 }
+                response = new ElasticPostResponse {
+                    responseDescription = result.ToString(),
+                    responseCode = 0
+                };
             }
+            catch(Exception ex)
+            {
+                response = new ElasticPostResponse {
+                    responseDescription = ex.Message,
+                    responseCode = 500
+                };
+            }
+            return response;
+            
         }
     }
 }

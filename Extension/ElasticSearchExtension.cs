@@ -28,6 +28,25 @@ namespace SmartApartmentData.Extension
             CreateIndex1(client, defaultIndex); 
         }
 
+        public static void AddPropertiesElasticsearch(this IServiceCollection services, IConfiguration configuration)
+        {
+            var url = configuration.GetConnectionString("AWSElasticBaseUrl");
+            var defaultIndex = configuration["propertyindex"];
+            var user = "tubotonbaharry";
+            var pass = configuration["password"];
+
+            var settings = new ConnectionSettings(new Uri(url))
+            .DefaultIndex(defaultIndex);
+            settings.BasicAuthentication(user, pass);
+
+            //AddDefaultManagementMappings(settings);
+
+            var client = new ElasticClient(settings);
+
+            services.AddSingleton<IElasticClient>(client);
+            CreateIndex2(client, defaultIndex);
+        }
+
         private static void AddDefaultManagementMappings(ConnectionSettings settings)
         {
             settings.DefaultMappingFor<Management>(m => m
@@ -47,7 +66,7 @@ namespace SmartApartmentData.Extension
             );
         }
 
-        private static void CreateIndex3(IElasticClient client, string indexName)
+        private static void CreateIndex2(IElasticClient client, string indexName)
         {
             var createIndexResponse2 = client.Indices.Create(indexName,
                 index => index.Map<Properties>(x => x.AutoMap())

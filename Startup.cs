@@ -39,10 +39,14 @@ namespace SmartApartmentData
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSingleton<IManagementService, ElasticSearchManagementService>();
+            services.AddSingleton<IPropertyService, ElasticSearchPropertiesService>();
             services.Configure<ManagementSetting>(Configuration.GetSection("management"));
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddManagementElasticsearch(Configuration);
+            services.AddPropertiesElasticsearch(Configuration);
+            //services.AddLogging();
+            //services.AddSingleton(typeof(ILogger), typeof(Logger<Startup>)); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
