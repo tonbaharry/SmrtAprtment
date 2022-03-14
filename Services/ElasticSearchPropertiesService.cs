@@ -121,7 +121,7 @@ namespace SmartApartmentData.Services
                 _logger.LogError("Unable to carry out Elastic Search");
                 return new List<Properties>();
             }
-            return result.Documents.ToList();
+            return result.Documents.Where(x=>x.property!=null).ToList();
         }
     }
 }

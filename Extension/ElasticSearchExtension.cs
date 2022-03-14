@@ -13,7 +13,7 @@ namespace SmartApartmentData.Extension
         {
             var url = configuration.GetConnectionString("AWSElasticBaseUrl");
             var defaultIndex = configuration["managementindex"];
-            var user = "tubotonbaharry";
+            var user = configuration["username"];//"tubotonbaharry";
             var pass = configuration["password"];
   
             var settings = new ConnectionSettings(new Uri(url))

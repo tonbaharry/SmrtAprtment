@@ -68,7 +68,7 @@ namespace SmartApartmentData.Services
                 _logger.LogError("Unable to carry out Elastic Search");
                 return new List<Management>();
             }
-            return result.Documents.ToList();
+            return result.Documents.Where(x=>x.mgmt!=null).ToList();
         }
 
         public async Task<ElasticPostResponse> SaveSingleManagementAsync(Management mgt)
