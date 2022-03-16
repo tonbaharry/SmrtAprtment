@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Nest;
 using SmartApartmentData.Model;
+ using SmartApartmentData.Interfaces;
 
 namespace SmartApartmentData.Services
 {
@@ -68,7 +69,7 @@ namespace SmartApartmentData.Services
                 _logger.LogError("Unable to carry out Elastic Search");
                 return new List<Management>();
             }
-            return result.Documents.Where(x=>x.mgmt!=null).ToList();
+            return result.Documents.Where(x => x.mgmt != null).ToList();
         }
 
         public async Task<ElasticPostResponse> SaveSingleManagementAsync(Management mgt)

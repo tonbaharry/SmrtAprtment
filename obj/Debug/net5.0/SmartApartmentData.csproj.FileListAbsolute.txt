@@ -31,3 +31,16 @@ C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\properties2.json
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Elasticsearch.Net.dll
 C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Nest.dll
 C:\Users\tubot\SmartApartmentData\obj\Debug\net5.0\SmartApartmentData.csproj.AssemblyReference.cache
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\tubot\SmartApartmentData\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

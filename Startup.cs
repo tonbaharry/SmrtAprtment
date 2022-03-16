@@ -11,10 +11,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SmartApartmentData.Extension;
+using SmartApartmentData.Interfaces;
 using SmartApartmentData.Services;
+using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SmartApartmentData
 {
@@ -40,11 +45,23 @@ namespace SmartApartmentData
 
             services.AddSingleton<IManagementService, ElasticSearchManagementService>();
             services.AddSingleton<IPropertyService, ElasticSearchPropertiesService>();
+            services.AddSingleton<ITokenService, TokenService>();
             services.Configure<ManagementSetting>(Configuration.GetSection("management"));
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddManagementElasticsearch(Configuration);
             services.AddPropertiesElasticsearch(Configuration);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["token_key"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+            });
             //services.AddLogging();
             //services.AddSingleton(typeof(ILogger), typeof(Logger<Startup>)); 
         }
@@ -62,7 +79,7 @@ namespace SmartApartmentData
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

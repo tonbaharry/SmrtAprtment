@@ -1,22 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nest;
+using SmartApartmentData.Interfaces;
 using SmartApartmentData.Model;
 using SmartApartmentData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartApartmentData.Controllers
 {
+    [Authorize]
     public class ManagementController : Controller
     {
         private IManagementService _service;
+        private ITokenService _tokenService;
+        private IMapper _mapper;
 
-        public ManagementController(IManagementService service)
+        public ManagementController(IManagementService service, ITokenService tokenService, IMapper mapper)
         {
             _service = service;
+            _tokenService = tokenService;
+            _mapper = mapper;
         }
         
         [HttpPost("InsertSingleManagementRecord")]
@@ -43,9 +51,9 @@ namespace SmartApartmentData.Controllers
         [HttpGet("SearchManagement")]
         public async Task<IActionResult> SearchManagement(string query = "")
         {
-            var response = await _service.SearchKeyManagement(query);
+            var serviceresponse = await _service.SearchKeyManagement(query);
 
-            return Ok(response);
+            return Ok(serviceresponse);
         }
     }
 }
