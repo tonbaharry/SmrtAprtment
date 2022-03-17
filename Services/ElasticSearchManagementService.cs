@@ -60,8 +60,16 @@ namespace SmartApartmentData.Services
 
         public async Task<List<Management>> SearchKeyManagement(string keyword)
         {
-            var result = await _elasticClient.SearchAsync<Management>(
-                 s => s.Query(q => q.QueryString(d => d.Query('*' + keyword + '*'))));
+            
+            var result = await _elasticClient.SearchAsync<Management>(s => s.Source()  
+                                .Query(q => q  
+                                .QueryString(qs =>   
+                                   qs.Query("*" + keyword + "*")  
+                                   .Fields(fs => fs  
+                                       .Fields(f1 => f1.mgmt.name,  
+                                               f2 => f2.mgmt.market,  
+                                               f3 => f3.mgmt.state   
+                                               )))));
 
             if (!result.IsValid)
             {

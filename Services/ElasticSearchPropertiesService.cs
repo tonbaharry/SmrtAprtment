@@ -113,8 +113,21 @@ namespace SmartApartmentData.Services
 
         public async Task<List<Properties>> SearchKeyProperties(string keyword)
         {
-            var result = await _elasticClient.SearchAsync<Properties>(
-                 s => s.Query(q => q.QueryString(d => d.Query('*' + keyword + '*'))));
+            var result = await _elasticClient.SearchAsync<Properties>(s => s.Source()  
+                                .Query(q => q  
+                                .QueryString(qs => qs  
+                                .AnalyzeWildcard()  
+                                   .Query("*" + keyword + "*")  
+                                   .Fields(fs => fs  
+                                       .Fields(f1 => f1.property.market,  
+                                               f2 => f2.property.name,  
+                                               f3 => f3.property.formerName,  
+                                               f4 => f4.property.streetAddress,
+                                               f5 => f5.property.city,  
+                                               f6 => f6.property.state    
+                                               )  
+                                   )  
+                                   ))); 
 
             if (!result.IsValid)
             {
